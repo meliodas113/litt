@@ -1,15 +1,13 @@
 
 import React, { useRef, useEffect } from 'react';
 import { Scale } from 'lucide-react';
-import { useMousePosition } from './MouseTrailEffect';
 
 const BookRotationEffect = () => {
   const bookRef = useRef<HTMLDivElement>(null);
   const bookContainerRef = useRef<HTMLDivElement>(null);
-  const mousePosition = useMousePosition();
   
   useEffect(() => {
-    const updateBookRotation = () => {
+    const updateBookRotation = (e: MouseEvent) => {
       if (!bookRef.current || !bookContainerRef.current) return;
       
       const bookRect = bookContainerRef.current.getBoundingClientRect();
@@ -17,8 +15,8 @@ const BookRotationEffect = () => {
       const bookCenterY = bookRect.top + bookRect.height / 2;
       
       // Calculate the relative position of the mouse to the book center
-      const mouseX = mousePosition.x - bookCenterX;
-      const mouseY = mousePosition.y - bookCenterY;
+      const mouseX = e.clientX - bookCenterX;
+      const mouseY = e.clientY - bookCenterY;
       
       // Calculate rotation angles based on mouse position
       // Limit rotation to a reasonable range (-15 to 15 degrees)
@@ -31,12 +29,16 @@ const BookRotationEffect = () => {
       bookRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
     
-    window.addEventListener('mousemove', updateBookRotation);
+    const handleMouseMove = (e: MouseEvent) => {
+      window.requestAnimationFrame(() => updateBookRotation(e));
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
-      window.removeEventListener('mousemove', updateBookRotation);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [mousePosition]);
+  }, []);
   
   return (
     <div ref={bookContainerRef} className="book-container relative">
