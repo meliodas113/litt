@@ -4,14 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SendHorizonal, Loader2 } from "lucide-react";
 import ChatMessage, { MessageType } from "./ChatMessage";
-import { generateLegalResponse } from "@/utils/gemini";
+import { generateLegalResponse } from "@/utils/geminiClient";
 import { useToast } from "@/components/ui/use-toast";
-
-// Define a type for the message format expected by the generateLegalResponse function
-type ApiChatMessage = {
-  role: "user" | "assistant";
-  content: string;
-};
+import { ApiChatMessage } from "@/utils/types/chatTypes";
 
 const INITIAL_MESSAGES: MessageType[] = [
   {
@@ -53,7 +48,8 @@ const ChatInterface = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     
     // Add user message to conversation history for the API
-    const updatedHistory = [...conversationHistory, { role: "user", content: input }];
+    const apiUserMessage: ApiChatMessage = { role: "user", content: input };
+    const updatedHistory = [...conversationHistory, apiUserMessage];
     setConversationHistory(updatedHistory);
     
     setInput("");
@@ -74,7 +70,8 @@ const ChatInterface = () => {
       setMessages((prevMessages) => [...prevMessages, aiMessage]);
       
       // Add AI response to conversation history for future context
-      setConversationHistory([...updatedHistory, { role: "assistant", content: response }]);
+      const apiAiMessage: ApiChatMessage = { role: "assistant", content: response };
+      setConversationHistory([...updatedHistory, apiAiMessage]);
     } catch (error) {
       console.error("Error generating response:", error);
       toast({
