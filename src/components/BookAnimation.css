@@ -1,4 +1,3 @@
-
 .book-container {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -11,8 +10,7 @@
 .book {
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateY(-15deg) rotateX(10deg); /* Default tilt */
-  transition: transform 0.3s ease;
+  transition: transform 0.1s ease-out;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   animation: bookFloat 6s ease-in-out infinite;
   will-change: transform;
@@ -63,10 +61,10 @@
 
 @keyframes bookFloat {
   0%, 100% {
-    transform: translateY(0px) rotateY(-15deg) rotateX(10deg);
+    transform: translateY(0px) rotateX(10deg) rotateY(-15deg);
   }
   50% {
-    transform: translateY(-15px) rotateY(-15deg) rotateX(10deg);
+    transform: translateY(-15px) rotateX(10deg) rotateY(-15deg);
   }
 }
 

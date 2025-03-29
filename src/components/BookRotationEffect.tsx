@@ -1,54 +1,63 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Scale } from 'lucide-react';
 
 const BookRotationEffect = () => {
   const bookRef = useRef<HTMLDivElement>(null);
-  const bookContainerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [rotation, setRotation] = useState({ x: 10, y: -15 }); // Default tilt values
   
   useEffect(() => {
-    const updateBookRotation = (e: MouseEvent) => {
-      if (!bookRef.current || !bookContainerRef.current) return;
-      
-      const bookRect = bookContainerRef.current.getBoundingClientRect();
-      const bookCenterX = bookRect.left + bookRect.width / 2;
-      const bookCenterY = bookRect.top + bookRect.height / 2;
-      
-      // Calculate the relative position of the mouse to the book center
-      const mouseX = e.clientX - bookCenterX;
-      const mouseY = e.clientY - bookCenterY;
-      
-      // Calculate rotation angles based on mouse position
-      // Limit rotation to a reasonable range (-15 to 15 degrees)
-      const maxRotation = 15;
-      // Invert Y for natural tilt (mouse above = tilt back)
-      const rotateX = Math.max(Math.min(-mouseY / 20, maxRotation), -maxRotation);
-      const rotateY = Math.max(Math.min(mouseX / 20, maxRotation), -maxRotation);
-      
-      // Apply the rotation to the book
-      bookRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    };
-    
     const handleMouseMove = (e: MouseEvent) => {
-      window.requestAnimationFrame(() => updateBookRotation(e));
+      if (!bookRef.current || !containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      
+      // Calculate center of the element
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Calculate how far the mouse is from the center (as a percentage of the window)
+      const mouseX = e.clientX - centerX;
+      const mouseY = e.clientY - centerY;
+      
+      // Limit the rotation (adjust these values to control the rotation amount)
+      const maxRotation = 20;
+      const rotateY = Math.max(Math.min(mouseX / 10, maxRotation), -maxRotation);
+      // Invert Y axis for natural tilt (mouse above = tilt back)
+      const rotateX = Math.max(Math.min(-mouseY / 10, maxRotation), -maxRotation);
+      
+      // Update rotation state - maintain a base tilt and add mouse-based rotation
+      setRotation({
+        x: 10 + rotateX, // Add to default tilt
+        y: -15 + rotateY  // Add to default tilt
+      });
     };
     
+    const resetRotation = () => {
+      // Reset to default tilted position when mouse leaves
+      setRotation({ x: 10, y: -15 });
+    };
+
+    // Add event listeners
     window.addEventListener('mousemove', handleMouseMove);
+    containerRef.current?.addEventListener('mouseleave', resetRotation);
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      containerRef.current?.removeEventListener('mouseleave', resetRotation);
     };
   }, []);
   
   return (
-    <div ref={bookContainerRef} className="book-container relative">
+    <div ref={containerRef} className="book-container relative">
       <div 
         ref={bookRef} 
-        className="book transition-transform" 
+        className="book" 
         style={{ 
-          transformStyle: 'preserve-3d', 
+          transformStyle: 'preserve-3d',
           transformOrigin: 'center center',
-          transform: 'rotateX(10deg) rotateY(-15deg)' // Default tilted position
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
         }}
       >
         <div className="glow-effect"></div>
