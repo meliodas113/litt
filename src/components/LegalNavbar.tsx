@@ -42,23 +42,7 @@ const LegalNavbar = () => {
             </span>
           </Link>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
-              Home
-            </Link>
-            <Link to="/about" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
-              About Us
-            </Link>
-            <Link to="/features" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
-              Features
-            </Link>
-            <Link to="/blog" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
-              Blog
-            </Link>
-          </div>
-          
-          {/* Action Buttons */}
+          {/* Action Buttons - Removed Desktop Navigation Links */}
           <div className="flex items-center gap-4">
             <Link to="/chat">
               <Button 
@@ -85,62 +69,11 @@ const LegalNavbar = () => {
               </Button>
             </Link>
 
-            {/* Mobile Menu Toggle */}
-            <button 
-              onClick={toggleMenu} 
-              className="md:hidden text-white hover:text-primary transition-colors duration-300"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {/* Mobile Menu Toggle - Removed as no longer needed without links */}
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div 
-          className={`md:hidden absolute left-0 w-full rounded-b-xl overflow-hidden transition-all duration-500 ease-in-out ${
-            isMenuOpen 
-              ? 'max-h-[500px] opacity-100 translate-y-0' 
-              : 'max-h-0 opacity-0 -translate-y-4'
-          }`}
-        >
-          <div className={`${isScrolled ? 'bg-black/95' : 'bg-black/80'} backdrop-blur-md px-6 py-4 space-y-4`}>
-            <Link 
-              to="/" 
-              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
-              onClick={toggleMenu}
-            >
-              About Us
-            </Link>
-            <Link 
-              to="/features" 
-              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
-              onClick={toggleMenu}
-            >
-              Features
-            </Link>
-            <Link 
-              to="/blog" 
-              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
-              onClick={toggleMenu}
-            >
-              Blog
-            </Link>
-            <Link 
-              to="/chat" 
-              className="block bg-primary/20 text-white py-2 rounded-full text-center hover:bg-primary/30 transition-all duration-300"
-              onClick={toggleMenu}
-            >
-              Chat Now
-            </Link>
-          </div>
-        </div>
+        {/* Mobile Menu - Removed as no longer needed without links */}
       </nav>
     </div>
   );
