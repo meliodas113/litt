@@ -44,16 +44,16 @@ const LegalNavbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               Home
             </Link>
-            <Link to="/about" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/about" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               About Us
             </Link>
-            <Link to="/features" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/features" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               Features
             </Link>
-            <Link to="/blog" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/blog" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               Blog
             </Link>
           </div>
@@ -116,28 +116,28 @@ const LegalNavbar = () => {
           <div className={`${isScrolled ? 'bg-black/95' : 'bg-black/80'} backdrop-blur-md px-6 py-4 space-y-4`}>
             <Link 
               to="/" 
-              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link 
               to="/about" 
-              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               About Us
             </Link>
             <Link 
               to="/features" 
-              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               Features
             </Link>
             <Link 
               to="/blog" 
-              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               Blog
