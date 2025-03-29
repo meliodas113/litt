@@ -33,27 +33,27 @@ const LegalNavbar = () => {
         <div className="container mx-auto flex justify-between items-center py-3 px-6 relative">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative p-1.5 rounded-full bg-purple-500/20 group-hover:bg-purple-500/30 transition-all duration-300">
-              <Scale className="h-6 w-6 text-purple-400 group-hover:scale-110 transition-all duration-300" />
-              <div className="absolute inset-0 bg-purple-500/30 rounded-full animate-pulse opacity-70"></div>
+            <div className="relative p-1.5 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-all duration-300">
+              <Scale className="h-6 w-6 text-primary-500 group-hover:scale-110 transition-all duration-300" />
+              <div className="absolute inset-0 bg-primary/30 rounded-full animate-pulse opacity-70"></div>
             </div>
-            <span className="font-bold text-xl bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent group-hover:from-purple-300 group-hover:to-purple-400 transition-all duration-300">
+            <span className="font-bold text-xl bg-gradient-to-r from-primary-400 to-primary-300 bg-clip-text text-transparent group-hover:from-primary-300 group-hover:to-primary-400 transition-all duration-300">
               Litt
             </span>
           </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300`}>
+            <Link to="/" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               Home
             </Link>
-            <Link to="/about" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300`}>
+            <Link to="/about" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               About Us
             </Link>
-            <Link to="/features" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300`}>
+            <Link to="/features" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               Features
             </Link>
-            <Link to="/blog" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300`}>
+            <Link to="/blog" className={`${isScrolled ? 'text-white/90' : 'text-white'} hover:text-white font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
               Blog
             </Link>
           </div>
@@ -89,7 +89,7 @@ const LegalNavbar = () => {
               <Button className={`hidden md:flex ${
                 isScrolled 
                   ? 'bg-white hover:bg-white/90 text-black' 
-                  : 'bg-purple-500 hover:bg-purple-600 text-white'
+                  : 'bg-primary hover:bg-primary/90 text-white'
                 } font-medium transition-all duration-300`}>
                 Contact us
               </Button>
@@ -98,7 +98,7 @@ const LegalNavbar = () => {
             {/* Mobile Menu Toggle */}
             <button 
               onClick={toggleMenu} 
-              className="md:hidden text-white hover:text-purple-300 transition-colors duration-300"
+              className="md:hidden text-white hover:text-primary transition-colors duration-300"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -144,7 +144,7 @@ const LegalNavbar = () => {
             </Link>
             <Link 
               to="/contact" 
-              className="block bg-purple-500/20 text-white py-2 rounded-md text-center hover:bg-purple-500/30 transition-all duration-300"
+              className="block bg-primary/20 text-white py-2 rounded-md text-center hover:bg-primary/30 transition-all duration-300"
               onClick={toggleMenu}
             >
               Contact Us
