@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { Scale, Gavel, BookOpen, Balance, Scroll } from 'lucide-react';
+import { Scale, Gavel, BookOpen, Scroll } from 'lucide-react';
 
 interface FloatingElement {
   id: number;
-  icon: 'scale' | 'gavel' | 'book' | 'balance' | 'scroll';
+  icon: 'scale' | 'gavel' | 'book' | 'scroll';
   size: number;
   top: number;
   left: number;
@@ -20,8 +20,18 @@ interface FloatingElement {
 const FloatingElements = () => {
   const [elements, setElements] = useState<FloatingElement[]>([]);
   
+  // Define legal terms inside the component
+  const legalTerms = [
+    'Justice',
+    'Law',
+    'Rights',
+    'Constitution',
+    'Legal Aid',
+    'Counsel'
+  ];
+  
   useEffect(() => {
-    const icons: FloatingElement['icon'][] = ['scale', 'gavel', 'book', 'balance', 'scroll'];
+    const icons: FloatingElement['icon'][] = ['scale', 'gavel', 'book', 'scroll'];
     
     const colors = [
       'text-primary/30',
@@ -30,16 +40,7 @@ const FloatingElements = () => {
       'text-primary-foreground/20'
     ];
     
-    const legalTerms = [
-      'Justice',
-      'Law',
-      'Rights',
-      'Constitution',
-      'Legal Aid',
-      'Counsel'
-    ];
-    
-    const newElements = [
+    const newElements: FloatingElement[] = [
       // Legal Icons
       ...Array(15).fill(0).map((_, i) => ({
         id: i,
@@ -53,7 +54,7 @@ const FloatingElements = () => {
         opacity: Math.random() * 0.3 + 0.1,
         color: colors[Math.floor(Math.random() * colors.length)],
         blur: Math.random() > 0.5 ? Math.random() * 3 + 1 : 0,
-        type: 'icon'
+        type: 'icon' as const
       })),
       
       // Legal Terms as Floating Text
@@ -69,7 +70,7 @@ const FloatingElements = () => {
         opacity: Math.random() * 0.2 + 0.05,
         color: 'text-white/20',
         blur: Math.random() * 2,
-        type: 'text'
+        type: 'text' as const
       }))
     ];
     
@@ -97,7 +98,6 @@ const FloatingElements = () => {
       case 'scale': return <Scale {...props} />;
       case 'gavel': return <Gavel {...props} />;
       case 'book': return <BookOpen {...props} />;
-      case 'balance': return <Balance {...props} />;
       case 'scroll': return <Scroll {...props} />;
       default: return <Scale {...props} />;
     }
