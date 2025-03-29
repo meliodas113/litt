@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Scale, Gavel, BookOpen, Scroll } from 'lucide-react';
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
-import { Card } from "@/components/ui/card";
 
 interface FloatingElement {
   id: number;
@@ -16,21 +14,11 @@ interface FloatingElement {
   opacity: number;
   color: string;
   blur: number;
-  type: 'icon' | 'text' | 'gradient';
+  type: 'icon';
 }
 
 const FloatingElements = () => {
   const [elements, setElements] = useState<FloatingElement[]>([]);
-  
-  // Define legal terms inside the component
-  const legalTerms = [
-    'Justice',
-    'Law',
-    'Rights',
-    'Constitution',
-    'Legal Aid',
-    'Counsel'
-  ];
   
   useEffect(() => {
     const icons: FloatingElement['icon'][] = ['scale', 'gavel', 'book', 'scroll'];
@@ -43,8 +31,8 @@ const FloatingElements = () => {
     ];
     
     const newElements: FloatingElement[] = [
-      // Legal Icons
-      ...Array(15).fill(0).map((_, i) => ({
+      // Legal Icons - increased the count since we removed text elements
+      ...Array(25).fill(0).map((_, i) => ({
         id: i,
         icon: icons[Math.floor(Math.random() * icons.length)],
         size: Math.random() * 40 + 20,
@@ -57,22 +45,6 @@ const FloatingElements = () => {
         color: colors[Math.floor(Math.random() * colors.length)],
         blur: Math.random() > 0.5 ? Math.random() * 3 + 1 : 0,
         type: 'icon' as const
-      })),
-      
-      // Legal Terms as Floating Text
-      ...Array(10).fill(0).map((_, i) => ({
-        id: i + 100,
-        icon: 'book' as const,
-        size: Math.random() * 30 + 15,
-        top: Math.random() * 100,
-        left: Math.random() * 100,
-        delay: Math.random() * 5,
-        duration: Math.random() * 25 + 20,
-        rotation: Math.random() * 360,
-        opacity: Math.random() * 0.2 + 0.05,
-        color: 'text-white/20',
-        blur: Math.random() * 2,
-        type: 'text' as const
       }))
     ];
     
@@ -84,26 +56,6 @@ const FloatingElements = () => {
       size: element.size, 
       className: `${element.color} opacity-70 hover:opacity-100 transition-opacity` 
     };
-    
-    if (element.type === 'text') {
-      const term = legalTerms[Math.floor(Math.random() * legalTerms.length)];
-      return (
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <div 
-              className={`px-3 py-2 rounded-lg backdrop-blur-md bg-primary/10 border border-primary/20 shadow-sm hover:bg-primary/20 transition-all duration-300 cursor-pointer ${element.color}`}
-            >
-              <span className="text-xs font-medium tracking-wider text-white/90">
-                {term}
-              </span>
-            </div>
-          </HoverCardTrigger>
-          <HoverCardContent className="glass-morphism backdrop-blur-xl bg-black/50 border border-primary/20 text-white w-48">
-            <p className="text-xs">{term}: A fundamental concept in legal practice and theory.</p>
-          </HoverCardContent>
-        </HoverCard>
-      );
-    }
     
     switch(element.icon) {
       case 'scale': return <Scale {...props} />;
@@ -119,7 +71,7 @@ const FloatingElements = () => {
       {elements.map(element => (
         <div
           key={element.id}
-          className={`absolute floating-element transition-all duration-1000 ${element.type === 'text' ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          className="absolute floating-element transition-all duration-1000 pointer-events-none"
           style={{
             top: `${element.top}%`,
             left: `${element.left}%`,
@@ -127,7 +79,7 @@ const FloatingElements = () => {
             animation: `float ${element.duration}s ease-in-out infinite ${element.delay}s, 
                         rotate ${element.duration * 1.5}s linear infinite ${element.delay}s`,
             transform: `rotate(${element.rotation}deg)`,
-            zIndex: element.type === 'text' ? 10 : 5,
+            zIndex: 5,
             filter: element.blur ? `blur(${element.blur}px)` : 'none',
           }}
         >
