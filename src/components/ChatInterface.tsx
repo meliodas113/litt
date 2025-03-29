@@ -7,6 +7,12 @@ import ChatMessage, { MessageType } from "./ChatMessage";
 import { generateLegalResponse } from "@/utils/gemini";
 import { useToast } from "@/components/ui/use-toast";
 
+// Define a type for the message format expected by the generateLegalResponse function
+type ApiChatMessage = {
+  role: "user" | "assistant";
+  content: string;
+};
+
 const INITIAL_MESSAGES: MessageType[] = [
   {
     id: "welcome",
@@ -22,6 +28,7 @@ const ChatInterface = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const [conversationHistory, setConversationHistory] = useState<ApiChatMessage[]>([]);
 
   useEffect(() => {
     scrollToBottom();
@@ -42,18 +49,19 @@ const ChatInterface = () => {
       timestamp: new Date(),
     };
 
+    // Add user message to UI messages
     setMessages((prevMessages) => [...prevMessages, userMessage]);
+    
+    // Add user message to conversation history for the API
+    const updatedHistory = [...conversationHistory, { role: "user", content: input }];
+    setConversationHistory(updatedHistory);
+    
     setInput("");
     setIsLoading(true);
 
     try {
-      // Get only the message contents for context
-      const messageHistory = messages.map(msg => ({
-        role: msg.sender === "user" ? "user" : "assistant",
-        content: msg.content
-      }));
-      
-      const response = await generateLegalResponse(input, messageHistory);
+      // Pass the entire conversation history to generate a more contextual response
+      const response = await generateLegalResponse(input, updatedHistory);
       
       const aiMessage: MessageType = {
         id: (Date.now() + 1).toString(),
@@ -62,7 +70,11 @@ const ChatInterface = () => {
         timestamp: new Date(),
       };
 
+      // Add AI response to UI messages
       setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      
+      // Add AI response to conversation history for future context
+      setConversationHistory([...updatedHistory, { role: "assistant", content: response }]);
     } catch (error) {
       console.error("Error generating response:", error);
       toast({
