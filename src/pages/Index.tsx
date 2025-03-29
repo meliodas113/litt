@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LegalNavbar from "@/components/LegalNavbar";
@@ -11,6 +11,11 @@ import BookRotationEffect from "@/components/BookRotationEffect";
 
 const Index = () => {
   useScrollAnimation();
+  
+  // For heading typing animation
+  const [displayedText, setDisplayedText] = useState("");
+  const fullText = "LEGAL ADVICE WITHOUT BORDERS";
+  const typingSpeed = 80; // milliseconds per character
   
   // For ambient background particles
   const [particles, setParticles] = useState<Array<{
@@ -56,6 +61,19 @@ const Index = () => {
     }));
     
     setOrbs(newOrbs);
+    
+    // Start typing animation
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.substring(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, typingSpeed);
+    
+    return () => clearInterval(typingInterval);
   }, []);
 
   return (
@@ -105,8 +123,9 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center z-10 relative">
             {/* Left Content */}
             <div className="md:w-1/2 pt-20 md:pt-0">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight cursor-responsive">
-                LEGAL <span className="text-accent">ADVICE</span> WITHOUT BORDERS
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight cursor-responsive text-gray-200">
+                <span className="typing-cursor">{displayedText}</span>
+                <span className="text-accent"> {displayedText.includes("BORDERS") ? "" : "|"}</span>
               </h1>
               <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-xl cursor-responsive">
                 Your AI legal assistant for navigating Indian law with confidence and clarity.
