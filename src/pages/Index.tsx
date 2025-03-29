@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LegalNavbar from "@/components/LegalNavbar";
@@ -123,7 +122,7 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center z-10 relative">
             {/* Left Content */}
             <div className="md:w-1/2 pt-20 md:pt-0">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight cursor-responsive text-gray-200">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight cursor-responsive bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
                 <span className="typing-cursor">{displayedText}</span>
                 <span className="text-accent"> {displayedText.includes("BORDERS") ? "" : "|"}</span>
               </h1>
