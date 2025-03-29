@@ -25,17 +25,17 @@ const AiSetupSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent scroll-animation-item animate-slide-up">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Setup Your AI Legal Assistant
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto scroll-animation-item animate-slide-up" style={{animationDelay: "0.1s"}}>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Get started with Litt in three simple steps and unlock the power of AI-driven legal assistance
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left side: Setup steps */}
-          <div className="space-y-6 scroll-animation-item animate-slide-right" style={{animationDelay: "0.2s"}}>
+          <div className="space-y-6">
             <div className="space-y-6">
               <div className="rounded-lg p-4 bg-background/40 border border-border/30 relative overflow-hidden transition-all duration-300 hover:bg-background/60 group">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -105,8 +105,8 @@ const AiSetupSection = () => {
             </div>
           </div>
           
-          {/* Right side: API key card with floating effect */}
-          <div className="relative perspective-container scroll-animation-item animate-slide-left" style={{animationDelay: "0.3s"}}>
+          {/* Right side: API key card - removed card-3d class and perspective-container classes */}
+          <div className="relative">
             <div className="absolute -top-20 -left-16 w-10 h-10 opacity-40 animate-float" style={{animationDelay: "0.2s", animationDuration: "9s"}}>
               <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/50 to-primary/10"></div>
             </div>
@@ -114,7 +114,8 @@ const AiSetupSection = () => {
               <div className="w-full h-full backdrop-blur-sm rounded-lg bg-gradient-to-tr from-primary/40 to-transparent"></div>
             </div>
             
-            <div className="card-3d relative transform-3d">
+            {/* Removed the card-3d class to eliminate tilt effect */}
+            <div className="relative">
               <ApiKeyGuide />
             </div>
             

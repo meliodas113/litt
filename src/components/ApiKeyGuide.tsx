@@ -35,7 +35,8 @@ const ApiKeyGuide = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4">
-            <div className="rounded-lg p-4 bg-background/40 border border-border/30 scroll-animation-item animate-slide-up" style={{ animationDelay: "0.1s" }}>
+            {/* Removed scroll-animation-item classes and animation delays */}
+            <div className="rounded-lg p-4 bg-background/40 border border-border/30">
               <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">1</span>
                 Create a Google AI Studio account
@@ -54,7 +55,7 @@ const ApiKeyGuide = () => {
               </a>
             </div>
 
-            <div className="rounded-lg p-4 bg-background/40 border border-border/30 scroll-animation-item animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            <div className="rounded-lg p-4 bg-background/40 border border-border/30">
               <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">2</span>
                 Generate an API key
@@ -73,7 +74,7 @@ const ApiKeyGuide = () => {
               </a>
             </div>
 
-            <div className="rounded-lg p-4 bg-background/40 border border-border/30 scroll-animation-item animate-slide-up" style={{ animationDelay: "0.3s" }}>
+            <div className="rounded-lg p-4 bg-background/40 border border-border/30">
               <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">3</span>
                 Configure Litt with your API key
