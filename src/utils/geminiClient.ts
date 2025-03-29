@@ -1,9 +1,9 @@
-
 import { ApiChatMessage } from "./types/chatTypes";
 
 // Get API key from localStorage if available
 const getApiKey = () => localStorage.getItem("gemini_api_key") || "YOUR_GEMINI_API_KEY";
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+// Updated API URL to use the correct endpoint
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent";
 
 interface GeminiRequestContent {
   role: string;
@@ -69,9 +69,24 @@ export async function generateLegalResponse(
     // Format conversation history for Gemini
     const formattedMessages = formatMessagesForGemini(conversationHistory);
     
+    // Create a consolidated conversation for the request
+    const contents = [systemMessage];
+    
+    // Add user query as the latest message
+    if (conversationHistory.length === 0) {
+      // If no history, just add the current query
+      contents.push({
+        role: "user",
+        parts: [{ text: query }]
+      });
+    } else {
+      // Otherwise, use the formatted conversation history
+      contents.push(...formattedMessages);
+    }
+    
     // Prepare the request body
     const requestBody: GeminiRequestBody = {
-      contents: [systemMessage, ...formattedMessages],
+      contents: contents,
       generationConfig: {
         temperature: 0.7,
         topP: 0.95,
