@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 
 export function useScrollAnimation() {
@@ -10,6 +9,7 @@ export function useScrollAnimation() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-running');
+          entry.target.classList.add('opacity-100');
           observer.current?.unobserve(entry.target);
         }
       });
