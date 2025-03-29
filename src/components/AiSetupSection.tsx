@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Key, ExternalLink, Code, Robot, Sparkles } from "lucide-react";
+import { Key, ExternalLink, Code, Bot, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import ApiKeyGuide from "./ApiKeyGuide";
 
@@ -98,7 +98,7 @@ const AiSetupSection = () => {
             <div className="flex justify-center mt-8">
               <Link to="/chat">
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium px-8 py-6 flex items-center gap-2 hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
-                  <Robot className="h-5 w-5" />
+                  <Bot className="h-5 w-5" />
                   Start Using Your Assistant
                 </Button>
               </Link>
