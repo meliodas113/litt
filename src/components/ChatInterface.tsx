@@ -10,7 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 const INITIAL_MESSAGES: MessageType[] = [
   {
     id: "welcome",
-    content: "Hello! I'm LegalLogic, your AI legal assistant. How can I help you with Indian law today?",
+    content: "Hello! I'm LegalLogic, your AI legal assistant specialized in Indian law. Ask me any legal question, and I'll analyze relevant constitutional provisions, statutes, and case precedents to provide informed guidance. You can also ask follow-up questions to explore specific aspects in more detail.",
     sender: "ai",
     timestamp: new Date(),
   },
@@ -79,7 +79,7 @@ const ChatInterface = () => {
           <div className="flex justify-start mb-4">
             <div className="bg-secondary text-secondary-foreground rounded-lg p-4 max-w-[80%] md:max-w-[70%] flex items-center">
               <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-              <span>Analyzing legal documents...</span>
+              <span>Analyzing legal documents and precedents...</span>
             </div>
           </div>
         )}
@@ -91,7 +91,7 @@ const ChatInterface = () => {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about Indian law..."
+            placeholder="Ask about Indian law or follow up on previous answers..."
             className="flex-1"
             disabled={isLoading}
           />
