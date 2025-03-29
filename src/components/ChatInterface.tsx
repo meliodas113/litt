@@ -47,7 +47,13 @@ const ChatInterface = () => {
     setIsLoading(true);
 
     try {
-      const response = await generateLegalResponse(input);
+      // Get only the message contents for context
+      const messageHistory = messages.map(msg => ({
+        role: msg.sender === "user" ? "user" : "assistant",
+        content: msg.content
+      }));
+      
+      const response = await generateLegalResponse(input, messageHistory);
       
       const aiMessage: MessageType = {
         id: (Date.now() + 1).toString(),
