@@ -45,7 +45,11 @@ const BookRotationEffect = () => {
       <div 
         ref={bookRef} 
         className="book transition-transform" 
-        style={{ transformStyle: 'preserve-3d', transformOrigin: 'center center' }}
+        style={{ 
+          transformStyle: 'preserve-3d', 
+          transformOrigin: 'center center',
+          transform: 'rotateX(10deg) rotateY(-15deg)' // Default tilted position
+        }}
       >
         <div className="glow-effect"></div>
         <div className="book-cover flex items-center justify-center bg-gradient-to-br from-primary/30 to-accent/30 backdrop-blur-sm border border-white/10 shadow-xl cursor-responsive" style={{ width: "240px", height: "320px" }}>
