@@ -26,7 +26,7 @@ export function useScrollAnimation() {
           
           // Get any custom delay from data attribute
           const delayAttr = entry.target.getAttribute('data-delay');
-          if (delayAttr) {
+          if (delayAttr && entry.target instanceof HTMLElement) {
             entry.target.style.animationDelay = `${delayAttr}s`;
           }
           
@@ -64,7 +64,9 @@ export function useScrollAnimation() {
       const speedAttr = el.getAttribute('data-speed');
       const speed = speedAttr ? parseFloat(speedAttr) : 0.1;
       const yPos = -(scrollY * speed);
-      (el as HTMLElement).style.transform = `translateY(${yPos}px)`;
+      if (el instanceof HTMLElement) {
+        el.style.transform = `translateY(${yPos}px)`;
+      }
     });
     
     // Apply rotation to 3D elements
@@ -72,7 +74,9 @@ export function useScrollAnimation() {
     rotateElements.forEach((el) => {
       const rotateSpeed = el.getAttribute('data-rotate-speed') || '0.02';
       const rotate = scrollY * parseFloat(rotateSpeed);
-      (el as HTMLElement).style.transform = `rotateY(${rotate}deg)`;
+      if (el instanceof HTMLElement) {
+        el.style.transform = `rotateY(${rotate}deg)`;
+      }
     });
     
   }, [elements, scrollY]);
