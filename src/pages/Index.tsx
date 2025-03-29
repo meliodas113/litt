@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -143,7 +142,7 @@ const Index = () => {
               
               {/* Subheading - only appears after typing is complete */}
               <div className={`transition-opacity duration-500 ${isTypingComplete ? 'opacity-100' : 'opacity-0'}`}>
-                <p className="text-sm md:text-md mb-10 text-gray-300 max-w-xl">
+                <p className="text-lg md:text-xl mb-10 text-gray-200 max-w-xl font-medium tracking-wide leading-relaxed">
                   Your AI legal assistant for navigating Indian law with confidence and clarity.
                 </p>
                 <div className="flex flex-wrap gap-4">
