@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LegalNavbar from "@/components/LegalNavbar";
 import LegalFooter from "@/components/LegalFooter";
-import { Scales, MessageSquare, BookOpen, Gavel, Shield } from "lucide-react";
+import { Scale, MessageSquare, BookOpen, Gavel, Shield } from "lucide-react";
 
 const Index = () => {
   return (
@@ -14,7 +14,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="bg-primary text-primary-foreground py-16">
           <div className="container mx-auto px-6 text-center">
-            <Scales className="h-16 w-16 mx-auto mb-6 text-accent" />
+            <Scale className="h-16 w-16 mx-auto mb-6 text-accent" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">LegalLogic</h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
               Your AI legal assistant for navigating Indian law with confidence

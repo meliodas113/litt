@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Scales } from "lucide-react";
+import { Scale } from "lucide-react";
 
 const LegalFooter = () => {
   return (
@@ -8,7 +8,7 @@ const LegalFooter = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <Scales className="h-5 w-5 text-accent" />
+            <Scale className="h-5 w-5 text-accent" />
             <span className="font-semibold">LegalLogic</span>
           </div>
           <div className="text-sm text-primary-foreground/80">

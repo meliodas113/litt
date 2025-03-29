@@ -1,7 +1,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Scales, User } from "lucide-react";
+import { Scale, User } from "lucide-react";
 
 export type MessageType = {
   id: string;
@@ -35,7 +35,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
         <div className="flex-shrink-0 mr-3">
           {isAI ? (
             <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
-              <Scales className="h-5 w-5 text-accent-foreground" />
+              <Scale className="h-5 w-5 text-accent-foreground" />
             </div>
           ) : (
             <div className="w-8 h-8 bg-primary-foreground rounded-full flex items-center justify-center">
