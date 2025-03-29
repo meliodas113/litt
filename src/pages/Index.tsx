@@ -6,6 +6,7 @@ import LegalNavbar from "@/components/LegalNavbar";
 import LegalFooter from "@/components/LegalFooter";
 import { MessageSquare, ArrowRight, BookOpen, Scale } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import MouseTrailEffect from "@/components/MouseTrailEffect";
 
 const Index = () => {
   useScrollAnimation();
@@ -59,6 +60,7 @@ const Index = () => {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
       <LegalNavbar />
+      <MouseTrailEffect />
       <main className="flex-1 relative">
         {/* Background Elements */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -102,21 +104,21 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center z-10 relative">
             {/* Left Content */}
             <div className="md:w-1/2 pt-20 md:pt-0">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight cursor-responsive">
                 LEGAL <span className="text-accent">ADVICE</span> WITHOUT BORDERS
               </h1>
-              <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-xl">
+              <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-xl cursor-responsive">
                 Your AI legal assistant for navigating Indian law with confidence and clarity.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/chat">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium px-8 py-6 flex items-center gap-2 hover:translate-y-[-2px] transition-all duration-300">
+                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium px-8 py-6 flex items-center gap-2 hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
                     <MessageSquare className="h-5 w-5" />
                     Start Consultation
                   </Button>
                 </Link>
                 <Link to="/chat">
-                  <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 rounded-full font-medium px-8 py-6 flex items-center hover:translate-y-[-2px] transition-all duration-300">
+                  <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 rounded-full font-medium px-8 py-6 flex items-center hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
                     Learn More
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -126,11 +128,11 @@ const Index = () => {
             
             {/* Right Animation - Legal Scales */}
             <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center items-center">
-              <div className="relative">
+              <div className="relative tilt-on-mouse">
                 <div className="book-container">
                   <div className="book">
                     <div className="glow-effect"></div>
-                    <div className="book-cover flex items-center justify-center bg-gradient-to-br from-primary/30 to-accent/30 backdrop-blur-sm border border-white/10 shadow-xl" style={{ width: "240px", height: "320px" }}>
+                    <div className="book-cover flex items-center justify-center bg-gradient-to-br from-primary/30 to-accent/30 backdrop-blur-sm border border-white/10 shadow-xl cursor-responsive" style={{ width: "240px", height: "320px" }}>
                       <Scale className="text-white h-20 w-20 opacity-90" />
                     </div>
                     <div className="book-page absolute top-2 left-2 bg-white/5 backdrop-blur-sm border border-white/5" style={{ width: "230px", height: "310px", transform: "translateZ(-5px)" }}></div>

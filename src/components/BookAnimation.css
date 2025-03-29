@@ -1,4 +1,3 @@
-
 .book-container {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -120,4 +119,40 @@
   background: radial-gradient(circle, rgba(var(--primary-rgb), 1) 0%, rgba(var(--primary-rgb), 0) 70%);
   z-index: 0;
   pointer-events: none;
+}
+
+/* Mouse interaction effects */
+.cursor-responsive {
+  transition: transform 0.2s ease-out, filter 0.3s ease;
+}
+
+.cursor-responsive:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.mouse-trail-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Interactive elements light up when mouse is nearby */
+.interactive-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.interactive-glow:hover {
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.5);
+  transform: translateY(-2px);
+}
+
+/* Items tilt slightly toward mouse */
+.tilt-on-mouse {
+  transition: transform 0.2s ease-out;
+  transform-style: preserve-3d;
 }
