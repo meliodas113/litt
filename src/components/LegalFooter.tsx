@@ -4,7 +4,7 @@ import { Scale } from "lucide-react";
 
 const LegalFooter = () => {
   return (
-    <footer className="bg-black/70 backdrop-blur-md border-t border-white/10 py-6 mt-auto">
+    <footer className="bg-black/30 backdrop-blur-md border-t border-white/5 py-6 mt-auto relative z-10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0 group">
