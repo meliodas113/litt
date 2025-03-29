@@ -166,6 +166,8 @@
   .perspective-container {
     transform-style: preserve-3d;
     perspective: 1000px;
+    min-height: 400px;
+    min-width: 400px;
   }
   
   .transform-3d {
@@ -287,6 +289,16 @@
   
   .typing-animation::after {
     content: none;
+  }
+
+  .floating-element {
+    animation-timing-function: ease-in-out;
+    filter: blur(0.5px);
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 }
 

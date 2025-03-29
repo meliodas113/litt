@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { MessageSquare } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import MouseTrailEffect from "@/components/MouseTrailEffect";
 import BookRotationEffect from "@/components/BookRotationEffect";
+import FloatingElements from "@/components/FloatingElements";
 
 const Index = () => {
   useScrollAnimation();
@@ -36,9 +38,21 @@ const Index = () => {
     opacity: number;
   }>>([]);
 
+  // For floating decorative elements
+  const [decorations, setDecorations] = useState<Array<{
+    id: number;
+    type: string;
+    size: number;
+    top: number;
+    left: number;
+    duration: number;
+    delay: number;
+    rotate: boolean;
+  }>>([]);
+
   useEffect(() => {
     // Create ambient particles
-    const newParticles = Array(20).fill(0).map((_, i) => ({
+    const newParticles = Array(30).fill(0).map((_, i) => ({
       id: i,
       size: Math.random() * 100 + 50,
       opacity: Math.random() * 0.15 + 0.05,
@@ -51,7 +65,7 @@ const Index = () => {
     setParticles(newParticles);
     
     // Create glowing orbs for background
-    const newOrbs = Array(3).fill(0).map((_, i) => ({
+    const newOrbs = Array(5).fill(0).map((_, i) => ({
       id: i,
       size: Math.random() * 500 + 300,
       top: Math.random() * 100,
@@ -60,6 +74,21 @@ const Index = () => {
     }));
     
     setOrbs(newOrbs);
+    
+    // Create decorative floating elements
+    const types = ['paragraph', 'document', 'scale', 'gavel', 'courthouse'];
+    const newDecorations = Array(8).fill(0).map((_, i) => ({
+      id: i,
+      type: types[Math.floor(Math.random() * types.length)],
+      size: Math.random() * 40 + 20,
+      top: Math.random() * 80 + 10,
+      left: Math.random() * 80 + 10,
+      duration: Math.random() * 10 + 5,
+      delay: Math.random() * 5,
+      rotate: Math.random() > 0.5
+    }));
+    
+    setDecorations(newDecorations);
     
     // Improved smoother typing animation with faster delay
     let currentIndex = 0;
@@ -148,6 +177,9 @@ const Index = () => {
               }}
             ></div>
           ))}
+          
+          {/* Add the new floating elements component */}
+          <FloatingElements />
         </div>
         
         {/* Hero Section */}
@@ -176,10 +208,33 @@ const Index = () => {
               </div>
             </div>
             
-            {/* Right Animation - Book with mouse rotation effect */}
+            {/* Right Animation - Book with floating elements */}
             <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center items-center">
-              <div className="relative">
+              <div className="relative perspective-container">
+                {/* Add floating text bubbles around the book */}
+                <div className="absolute -top-20 -left-16 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 text-xs animate-float" style={{animationDelay: "0.5s", animationDuration: "8s"}}>
+                  <span className="text-primary/80">Legal Codes</span>
+                </div>
+                <div className="absolute top-40 -right-20 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 text-xs animate-float" style={{animationDelay: "1.8s", animationDuration: "7s"}}>
+                  <span className="text-primary/80">Indian Law</span>
+                </div>
+                <div className="absolute -bottom-10 -left-10 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 text-xs animate-float" style={{animationDelay: "1s", animationDuration: "6s"}}>
+                  <span className="text-primary/80">Legal Assistance</span>
+                </div>
+                
+                {/* Book component */}
                 <BookRotationEffect />
+                
+                {/* More floating elements */}
+                <div className="absolute top-20 -left-24 w-10 h-10 opacity-40 animate-float" style={{animationDelay: "0.2s", animationDuration: "9s"}}>
+                  <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/50 to-primary/10"></div>
+                </div>
+                <div className="absolute -top-10 right-10 w-8 h-8 opacity-40 animate-float" style={{animationDelay: "1.5s", animationDuration: "8s"}}>
+                  <div className="w-full h-full backdrop-blur-sm rounded-lg bg-gradient-to-tr from-primary/40 to-transparent"></div>
+                </div>
+                <div className="absolute bottom-10 right-0 w-12 h-12 opacity-30 animate-float" style={{animationDelay: "0.8s", animationDuration: "10s"}}>
+                  <div className="w-full h-full rounded-full border border-primary/30 backdrop-blur-sm"></div>
+                </div>
               </div>
             </div>
           </div>
