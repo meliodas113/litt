@@ -28,24 +28,28 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
         className={cn(
           "flex max-w-[80%] md:max-w-[70%] rounded-lg p-4 shadow-md transition-all duration-300 hover:shadow-lg",
           isAI
-            ? "bg-secondary text-secondary-foreground"
-            : "bg-primary text-primary-foreground"
+            ? "bg-secondary/80 backdrop-blur-sm text-secondary-foreground border border-border/20"
+            : "bg-primary/90 backdrop-blur-sm text-primary-foreground border border-primary/20"
         )}
       >
         <div className="flex-shrink-0 mr-3">
           {isAI ? (
-            <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
-              <Scale className="h-5 w-5 text-accent-foreground" />
+            <div className="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110 relative group">
+              <Scale className="h-5 w-5 text-accent z-10 group-hover:rotate-12 transition-transform" />
+              <div className="absolute inset-0 bg-accent/30 rounded-full animate-pulse opacity-70"></div>
             </div>
           ) : (
-            <div className="w-8 h-8 bg-primary-foreground rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
-              <User className="h-5 w-5 text-primary" />
+            <div className="w-8 h-8 bg-primary-foreground/10 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110">
+              <User className="h-5 w-5 text-primary-foreground" />
             </div>
           )}
         </div>
         <div className="flex-1">
           <div className="flex justify-between mb-1">
-            <span className="font-medium">
+            <span className={cn(
+              "font-medium",
+              isAI && "bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent"
+            )}>
               {isAI ? "Litt" : "You"}
             </span>
             <span className="text-xs opacity-70">
