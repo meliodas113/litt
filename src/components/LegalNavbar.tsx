@@ -44,16 +44,16 @@ const LegalNavbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
               Home
             </Link>
-            <Link to="/about" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/about" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
               About Us
             </Link>
-            <Link to="/features" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/features" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
               Features
             </Link>
-            <Link to="/blog" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} hover:text-white font-normal transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-primary after:transition-all after:duration-300`}>
+            <Link to="/blog" className={`${isScrolled ? 'text-gray-400' : 'text-gray-300'} text-sm font-light hover:text-white transition-all duration-300 transform hover:translate-y-[-2px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full`}>
               Blog
             </Link>
           </div>
@@ -65,33 +65,23 @@ const LegalNavbar = () => {
                 variant="outline" 
                 className={`hidden md:flex items-center gap-2 ${
                   isScrolled 
-                    ? 'bg-transparent text-white border-white/20 hover:bg-white/10 hover:border-white/30' 
-                    : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30'
-                } transition-all duration-300`}
+                    ? 'bg-primary/20 text-white border-primary/30 hover:bg-primary/30 hover:border-primary/40 hover:scale-105' 
+                    : 'bg-primary/20 text-white border-primary/30 hover:bg-primary/30 hover:border-primary/40 hover:scale-105'
+                } transition-all duration-300 text-sm rounded-full px-5`}
               >
-                <MessageSquare className="h-5 w-5" />
-                <span>Chat</span>
+                <MessageSquare className="h-4 w-4" />
+                <span>Chat Now</span>
               </Button>
               
               <Button 
                 variant="outline" 
                 className={`md:hidden flex items-center gap-2 p-2 ${
                   isScrolled 
-                    ? 'bg-transparent text-white border-white/20 hover:bg-white/10 hover:border-white/30' 
-                    : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30'
-                } transition-all duration-300`}
+                    ? 'bg-primary/20 text-white border-primary/30 hover:bg-primary/30 hover:border-primary/40' 
+                    : 'bg-primary/20 text-white border-primary/30 hover:bg-primary/30 hover:border-primary/40'
+                } transition-all duration-300 rounded-full`}
               >
                 <MessageSquare className="h-5 w-5" />
-              </Button>
-            </Link>
-            
-            <Link to="/contact">
-              <Button className={`hidden md:flex ${
-                isScrolled 
-                  ? 'bg-white hover:bg-white/90 text-black' 
-                  : 'bg-primary hover:bg-primary/90 text-white'
-                } font-medium transition-all duration-300`}>
-                Contact us
               </Button>
             </Link>
 
@@ -116,38 +106,38 @@ const LegalNavbar = () => {
           <div className={`${isScrolled ? 'bg-black/95' : 'bg-black/80'} backdrop-blur-md px-6 py-4 space-y-4`}>
             <Link 
               to="/" 
-              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link 
               to="/about" 
-              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               About Us
             </Link>
             <Link 
               to="/features" 
-              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               Features
             </Link>
             <Link 
               to="/blog" 
-              className="block text-gray-400 hover:text-white font-normal py-2 border-b border-white/10 transition-all duration-200"
+              className="block text-gray-400 hover:text-white text-sm font-light py-2 border-b border-white/10 transition-all duration-200"
               onClick={toggleMenu}
             >
               Blog
             </Link>
             <Link 
-              to="/contact" 
-              className="block bg-primary/20 text-white py-2 rounded-md text-center hover:bg-primary/30 transition-all duration-300"
+              to="/chat" 
+              className="block bg-primary/20 text-white py-2 rounded-full text-center hover:bg-primary/30 transition-all duration-300"
               onClick={toggleMenu}
             >
-              Contact Us
+              Chat Now
             </Link>
           </div>
         </div>
