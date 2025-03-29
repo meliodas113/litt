@@ -9,6 +9,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import MouseTrailEffect from "@/components/MouseTrailEffect";
 import BookRotationEffect from "@/components/BookRotationEffect";
 import FloatingElements from "@/components/FloatingElements";
+import AiSetupSection from "@/components/AiSetupSection";
 
 const Index = () => {
   useScrollAnimation();
@@ -239,6 +240,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+        
+        {/* AI Setup Section - Added new section here */}
+        <AiSetupSection />
       </main>
       <LegalFooter />
     </div>
