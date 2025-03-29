@@ -19,16 +19,18 @@ const Chat = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <LegalNavbar />
-      <main className="flex-1 container mx-auto px-2 sm:px-4 py-3 sm:py-6">
+      <main className="flex-1 container mx-auto px-2 sm:px-4 py-2 sm:py-6">
         <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border animate-fade-in">
-          <div className="p-3 sm:p-4 bg-primary text-primary-foreground flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
-            <div className="animate-slide-in-right">
-              <h1 className="text-lg sm:text-xl font-bold">AI Legal Consultation</h1>
-              <p className="text-xs sm:text-sm opacity-90">
-                Powered by Google Gemini AI - Ask Litt about Indian law and get real-time legal analysis
+          <div className="p-2 sm:p-4 bg-primary text-primary-foreground flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+            <div className="animate-slide-in-right w-full sm:w-auto">
+              <h1 className="text-base sm:text-xl font-bold">AI Legal Consultation</h1>
+              <p className="text-xs opacity-90">
+                Powered by Google Gemini AI - Get real-time legal analysis
               </p>
             </div>
-            <ApiKeyInput />
+            <div className="w-full sm:w-auto">
+              <ApiKeyInput />
+            </div>
           </div>
           <ChatInterface />
         </div>

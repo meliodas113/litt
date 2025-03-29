@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import FloatingElements from "@/components/FloatingElements";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Particle {
   id: number;
@@ -21,6 +22,7 @@ interface Orb {
 }
 
 const BackgroundElements = () => {
+  const isMobile = useIsMobile();
   // For ambient background particles
   const [particles, setParticles] = useState<Particle[]>([]);
   
@@ -28,10 +30,11 @@ const BackgroundElements = () => {
   const [orbs, setOrbs] = useState<Orb[]>([]);
 
   useEffect(() => {
-    // Create ambient particles
-    const newParticles = Array(30).fill(0).map((_, i) => ({
+    // Create ambient particles - fewer on mobile
+    const particleCount = isMobile ? 10 : 30;
+    const newParticles = Array(particleCount).fill(0).map((_, i) => ({
       id: i,
-      size: Math.random() * 100 + 50,
+      size: Math.random() * (isMobile ? 50 : 100) + (isMobile ? 25 : 50),
       opacity: Math.random() * 0.15 + 0.05,
       top: Math.random() * 100,
       left: Math.random() * 100,
@@ -41,10 +44,12 @@ const BackgroundElements = () => {
     
     setParticles(newParticles);
     
-    // Create glowing orbs for background
-    const newOrbs = Array(5).fill(0).map((_, i) => ({
+    // Create glowing orbs for background - fewer and smaller on mobile
+    const orbCount = isMobile ? 2 : 5;
+    const orbSize = isMobile ? 150 : 500;
+    const newOrbs = Array(orbCount).fill(0).map((_, i) => ({
       id: i,
-      size: Math.random() * 500 + 300,
+      size: Math.random() * orbSize + (isMobile ? 150 : 300),
       top: Math.random() * 100,
       left: Math.random() * 100,
       opacity: Math.random() * 0.2 + 0.1
@@ -52,29 +57,29 @@ const BackgroundElements = () => {
     
     setOrbs(newOrbs);
     
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="grid-background"></div>
       <div className="vignette"></div>
       
-      {/* Add grid lines */}
+      {/* Add grid lines - show fewer on mobile */}
       <div className="background-grid">
         {/* Horizontal grid lines */}
-        {[...Array(10)].map((_, i) => (
+        {[...Array(isMobile ? 5 : 10)].map((_, i) => (
           <div 
             key={`h-${i}`} 
             className="grid-line grid-line-h" 
-            style={{ top: `${i * 10}%` }}
+            style={{ top: `${i * (isMobile ? 20 : 10)}%` }}
           />
         ))}
         {/* Vertical grid lines */}
-        {[...Array(10)].map((_, i) => (
+        {[...Array(isMobile ? 5 : 10)].map((_, i) => (
           <div 
             key={`v-${i}`} 
             className="grid-line grid-line-v" 
-            style={{ left: `${i * 10}%` }}
+            style={{ left: `${i * (isMobile ? 20 : 10)}%` }}
           />
         ))}
       </div>

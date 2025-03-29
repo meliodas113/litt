@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Scale, Gavel, BookOpen, Scroll } from 'lucide-react';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface FloatingElement {
   id: number;
@@ -19,6 +20,7 @@ interface FloatingElement {
 
 const FloatingElements = () => {
   const [elements, setElements] = useState<FloatingElement[]>([]);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const icons: FloatingElement['icon'][] = ['scale', 'gavel', 'book', 'scroll'];
@@ -65,6 +67,11 @@ const FloatingElements = () => {
       default: return <Scale {...props} />;
     }
   };
+  
+  // Don't render on mobile
+  if (isMobile) {
+    return null;
+  }
   
   return (
     <div className="floating-elements-container pointer-events-none absolute inset-0 overflow-hidden z-0">
