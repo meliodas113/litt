@@ -39,6 +39,33 @@ const BookRotationEffect = () => {
       setRotation({ x: 10, y: -15 });
     };
 
+    // Add continuous rotation animation using requestAnimationFrame
+    let animationFrameId: number;
+    let angle = 0;
+    
+    const animateRotation = () => {
+      if (!bookRef.current || !containerRef.current) return;
+      
+      // Only apply the continuous rotation when mouse is not interacting
+      if (!containerRef.current.matches(':hover')) {
+        angle += 0.005; // Speed of rotation
+        
+        // Create gentle oscillating rotation effect
+        const oscillateX = Math.sin(angle) * 5;
+        const oscillateY = Math.cos(angle) * 5;
+        
+        setRotation({
+          x: 10 + oscillateX, 
+          y: -15 + oscillateY
+        });
+      }
+      
+      animationFrameId = requestAnimationFrame(animateRotation);
+    };
+    
+    // Start the animation
+    animateRotation();
+
     // Add event listeners
     window.addEventListener('mousemove', handleMouseMove);
     containerRef.current?.addEventListener('mouseleave', resetRotation);
@@ -46,6 +73,7 @@ const BookRotationEffect = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       containerRef.current?.removeEventListener('mouseleave', resetRotation);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
   
