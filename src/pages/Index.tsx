@@ -61,7 +61,7 @@ const Index = () => {
     
     setOrbs(newOrbs);
     
-    // Improved smooth typing animation
+    // Improved smoother typing animation with faster delay
     let currentIndex = 0;
     let typingTimeout: NodeJS.Timeout;
     
@@ -70,8 +70,8 @@ const Index = () => {
         setDisplayedText(fullText.substring(0, currentIndex));
         currentIndex++;
         
-        // Consistent timing for smoother animation
-        const typingDelay = 120; // consistent delay for smoother appearance
+        // Reduced typing delay for faster animation
+        const typingDelay = 80; // Faster typing speed
         typingTimeout = setTimeout(typeNextCharacter, typingDelay);
       } else {
         // Animation complete
@@ -79,8 +79,8 @@ const Index = () => {
       }
     };
     
-    // Start typing with a consistent initial delay
-    setTimeout(typeNextCharacter, 800);
+    // Start typing with a shorter initial delay
+    setTimeout(typeNextCharacter, 500);
     
     // Clean up timeouts if component unmounts during typing
     return () => {
