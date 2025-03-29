@@ -15,7 +15,6 @@ const Index = () => {
   // For heading typing animation
   const [displayedText, setDisplayedText] = useState("");
   const fullText = "LEGAL ADVICE WITHOUT BORDERS";
-  const typingSpeed = 80; // milliseconds per character
   
   // For ambient background particles
   const [particles, setParticles] = useState<Array<{
@@ -62,18 +61,23 @@ const Index = () => {
     
     setOrbs(newOrbs);
     
-    // Start typing animation
+    // Improved typing animation with natural randomness
     let currentIndex = 0;
-    const typingInterval = setInterval(() => {
+    const typeNextCharacter = () => {
       if (currentIndex <= fullText.length) {
         setDisplayedText(fullText.substring(0, currentIndex));
         currentIndex++;
-      } else {
-        clearInterval(typingInterval);
+        
+        // Add random delay between 50-120ms to simulate natural typing
+        const randomDelay = Math.floor(Math.random() * 70) + 50;
+        setTimeout(typeNextCharacter, randomDelay);
       }
-    }, typingSpeed);
+    };
     
-    return () => clearInterval(typingInterval);
+    // Start typing with a slight initial delay
+    setTimeout(typeNextCharacter, 500);
+    
+    // No need for cleanup as the component won't unmount during typing
   }, []);
 
   return (
@@ -124,8 +128,8 @@ const Index = () => {
             {/* Left Content */}
             <div className="md:w-1/2 pt-20 md:pt-0">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
-                <span className="typing-cursor">{displayedText}</span>
-                <span className="text-accent"> {displayedText.includes("BORDERS") ? "" : "|"}</span>
+                <span className="typing-animation">{displayedText}</span>
+                <span className="text-accent">{displayedText.includes("BORDERS") ? "" : "|"}</span>
               </h1>
               <p className="text-md md:text-lg mb-10 text-gray-300 max-w-xl">
                 Your AI legal assistant for navigating Indian law with confidence and clarity.

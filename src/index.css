@@ -269,7 +269,7 @@
     50% { opacity: 0; }
   }
   
-  .typing-cursor::after {
+  .typing-animation::after {
     content: '|';
     display: inline-block;
     margin-left: 3px;
