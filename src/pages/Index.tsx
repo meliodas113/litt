@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -102,34 +101,36 @@ const Index = () => {
             {generateParticles()}
           </div>
           
-          <div className="container mx-auto px-6 text-center hero-content relative py-24">
-            <div className="scroll-animation-item animate-slide-up transform-3d depth-1">
-              <div className="relative p-3 bg-accent/10 rounded-lg w-20 h-20 flex items-center justify-center mx-auto mb-6 floating">
-                <Scale className="h-12 w-12 text-accent" />
-                <div className="absolute inset-0 bg-accent/20 rounded-lg animate-pulse opacity-70"></div>
+          <div className="container mx-auto px-6 text-center hero-content relative py-24 flex flex-col justify-between min-h-screen">
+            <div className="flex-grow flex flex-col justify-center">
+              <div className="scroll-animation-item animate-slide-up transform-3d depth-1">
+                <div className="relative p-3 bg-accent/10 rounded-lg w-20 h-20 flex items-center justify-center mx-auto mb-6 floating">
+                  <Scale className="h-12 w-12 text-accent" />
+                  <div className="absolute inset-0 bg-accent/20 rounded-lg animate-pulse opacity-70"></div>
+                </div>
               </div>
+              
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-white scroll-animation-item animate-zoom-in transform-3d depth-2" style={{animationDelay: "0.2s"}}>
+                LEGAL <span className="text-accent">ADVICE</span> WITHOUT BORDERS
+              </h1>
+              
+              <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-white/90 font-light scroll-animation-item animate-slide-up transform-3d depth-1" style={{animationDelay: "0.4s"}}>
+                Your AI legal assistant for navigating Indian law with confidence
+              </p>
+              
+              <Link to="/chat" className="scroll-animation-item animate-zoom-in transform-3d depth-3" style={{animationDelay: "0.6s"}}>
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6 rounded-full font-medium hover:shadow-[0_0_15px_rgba(255,215,0,0.5)]">
+                  <MessageSquare className="mr-2 h-5 w-5" />
+                  Start Consultation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-white scroll-animation-item animate-zoom-in transform-3d depth-2" style={{animationDelay: "0.2s"}}>
-              LEGAL <span className="text-accent">ADVICE</span> WITHOUT BORDERS
-            </h1>
-            
-            <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-white/90 font-light scroll-animation-item animate-slide-up transform-3d depth-1" style={{animationDelay: "0.4s"}}>
-              Your AI legal assistant for navigating Indian law with confidence
-            </p>
-            
-            <Link to="/chat" className="scroll-animation-item animate-zoom-in transform-3d depth-3" style={{animationDelay: "0.6s"}}>
-              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6 rounded-full font-medium hover:shadow-[0_0_15px_rgba(255,215,0,0.5)]">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Start Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            
-            {/* Scroll indicator - now positioned at bottom of viewport */}
+            {/* Scroll indicator - positioned at bottom */}
             <div 
               ref={scrollIndicatorRef}
-              className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-opacity duration-500"
+              className="self-center mb-10 flex flex-col items-center transition-opacity duration-500"
             >
               <p className="text-white/70 mb-2 text-sm">Scroll to explore</p>
               <ChevronDown className="text-white/70 animate-bounce h-6 w-6" />
