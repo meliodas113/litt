@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -61,21 +60,21 @@ const Index = () => {
     
     setOrbs(newOrbs);
     
-    // Improved typing animation with natural randomness
+    // Improved typing animation with increased delay
     let currentIndex = 0;
     const typeNextCharacter = () => {
       if (currentIndex <= fullText.length) {
         setDisplayedText(fullText.substring(0, currentIndex));
         currentIndex++;
         
-        // Add random delay between 50-120ms to simulate natural typing
-        const randomDelay = Math.floor(Math.random() * 70) + 50;
+        // Increase delay range to 100-200ms for slower typing
+        const randomDelay = Math.floor(Math.random() * 100) + 100;
         setTimeout(typeNextCharacter, randomDelay);
       }
     };
     
-    // Start typing with a slight initial delay
-    setTimeout(typeNextCharacter, 500);
+    // Start typing with a slightly longer initial delay
+    setTimeout(typeNextCharacter, 700);
     
     // No need for cleanup as the component won't unmount during typing
   }, []);
