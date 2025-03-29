@@ -1,12 +1,15 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LegalNavbar from "@/components/LegalNavbar";
 import LegalFooter from "@/components/LegalFooter";
-import { MessageSquare, ArrowRight } from "lucide-react";
+import { MessageSquare, ArrowRight, BookOpen } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const Index = () => {
+  useScrollAnimation();
+
   return (
     <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
       <LegalNavbar />
@@ -38,15 +41,36 @@ const Index = () => {
               </div>
             </div>
             
-            {/* Right Image */}
+            {/* Right Animation - Book */}
             <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center items-center">
               <div className="relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/40 to-accent/40 rounded-full blur-2xl opacity-30"></div>
-                <img 
-                  src="/lovable-uploads/5884a554-59b4-4829-9771-24c0720d4a38.png" 
-                  alt="Legal Scales" 
-                  className="relative w-full max-w-lg object-cover z-10"
-                />
+                <div className="relative book-container">
+                  <div className="book animate-float">
+                    <div className="book-cover flex items-center justify-center bg-gradient-to-br from-primary/70 to-accent/70 rounded-lg shadow-xl" style={{ width: "240px", height: "320px" }}>
+                      <BookOpen className="text-white h-20 w-20 opacity-90" />
+                    </div>
+                    <div className="book-page absolute top-2 left-2 bg-white/10 rounded-lg" style={{ width: "230px", height: "310px", transform: "translateZ(-5px)" }}></div>
+                    <div className="book-page absolute top-4 left-4 bg-white/5 rounded-lg" style={{ width: "220px", height: "300px", transform: "translateZ(-10px)" }}></div>
+                  </div>
+                  
+                  {/* Floating particles */}
+                  <div className="absolute -inset-20 pointer-events-none">
+                    {[...Array(5)].map((_, i) => (
+                      <div 
+                        key={i}
+                        className="absolute rounded-full bg-primary/20"
+                        style={{
+                          width: `${Math.random() * 10 + 5}px`,
+                          height: `${Math.random() * 10 + 5}px`,
+                          top: `${Math.random() * 100}%`,
+                          left: `${Math.random() * 100}%`,
+                          animation: `float ${Math.random() * 5 + 5}s infinite ease-in-out ${Math.random() * 5}s`
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
