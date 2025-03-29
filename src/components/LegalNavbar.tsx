@@ -9,8 +9,8 @@ const LegalNavbar = () => {
     <nav className="bg-primary text-primary-foreground py-4 px-6 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <Scale className="h-6 w-6 text-accent" />
-          <span className="font-bold text-xl">LegalLogic</span>
+          <Scale className="h-6 w-6 text-accent animate-pulse" />
+          <span className="font-bold text-xl hover-grow">Litt</span>
         </Link>
         <div className="flex items-center gap-4">
           <Link to="/chat">
