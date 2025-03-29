@@ -98,6 +98,26 @@ const Index = () => {
           <div className="grid-background"></div>
           <div className="vignette"></div>
           
+          {/* Add grid lines */}
+          <div className="background-grid">
+            {/* Horizontal grid lines */}
+            {[...Array(10)].map((_, i) => (
+              <div 
+                key={`h-${i}`} 
+                className="grid-line grid-line-h" 
+                style={{ top: `${i * 10}%` }}
+              />
+            ))}
+            {/* Vertical grid lines */}
+            {[...Array(10)].map((_, i) => (
+              <div 
+                key={`v-${i}`} 
+                className="grid-line grid-line-v" 
+                style={{ left: `${i * 10}%` }}
+              />
+            ))}
+          </div>
+          
           {/* Glowing orbs */}
           {orbs.map(orb => (
             <div 
