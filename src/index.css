@@ -81,13 +81,14 @@
     @apply border-border;
     font-family: 'Montserrat', sans-serif;
   }
-
+  
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden; /* Prevent horizontal scroll */
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    width: 100%;
   }
   
   .dark .glass-card {
@@ -299,6 +300,68 @@
   @keyframes rotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* Mobile responsive utilities */
+  .mobile-container {
+    @apply px-4 sm:px-6 md:px-8 lg:px-16 mx-auto w-full;
+  }
+
+  .mobile-text {
+    @apply text-sm md:text-base lg:text-lg;
+  }
+
+  .mobile-heading {
+    @apply text-xl md:text-2xl lg:text-3xl font-bold;
+  }
+
+  .mobile-subheading {
+    @apply text-lg md:text-xl lg:text-2xl font-semibold;
+  }
+
+  .mobile-padding {
+    @apply p-3 md:p-4 lg:p-6;
+  }
+
+  .mobile-margin {
+    @apply my-3 md:my-4 lg:my-6;
+  }
+
+  .mobile-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
+  }
+
+  .mobile-flex {
+    @apply flex flex-col md:flex-row;
+  }
+
+  .mobile-hidden {
+    @apply hidden md:block;
+  }
+
+  .desktop-hidden {
+    @apply block md:hidden;
+  }
+
+  /* Responsive spacing */
+  .responsive-gap {
+    @apply gap-2 md:gap-4 lg:gap-6;
+  }
+
+  .responsive-p {
+    @apply p-2 md:p-4 lg:p-6;
+  }
+
+  .responsive-m {
+    @apply m-2 md:m-4 lg:m-6;
+  }
+
+  .responsive-py {
+    @apply py-3 md:py-6 lg:py-10;
+  }
+
+  .responsive-px {
+    @apply px-3 md:px-6 lg:px-10;
   }
 }
 
