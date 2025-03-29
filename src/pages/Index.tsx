@@ -90,8 +90,8 @@ const Index = () => {
     <div className="flex flex-col min-h-screen bg-background overflow-hidden">
       <LegalNavbar />
       <main className="flex-1 relative">
-        {/* Hero Section with 3D effects */}
-        <section className="hero-pattern py-24 md:py-32 relative perspective-container">
+        {/* Hero Section with 3D effects - Now Full Height */}
+        <section className="hero-pattern min-h-screen flex items-center justify-center relative perspective-container">
           {/* Background Grid */}
           <div className="background-grid">
             {generateGridLines()}
@@ -102,7 +102,7 @@ const Index = () => {
             {generateParticles()}
           </div>
           
-          <div className="container mx-auto px-6 text-center hero-content relative">
+          <div className="container mx-auto px-6 text-center hero-content relative py-24">
             <div className="scroll-animation-item animate-slide-up transform-3d depth-1">
               <div className="relative p-3 bg-accent/10 rounded-lg w-20 h-20 flex items-center justify-center mx-auto mb-6 floating">
                 <Scale className="h-12 w-12 text-accent" />
@@ -126,7 +126,7 @@ const Index = () => {
               </Button>
             </Link>
             
-            {/* Scroll indicator */}
+            {/* Scroll indicator - now positioned at bottom of viewport */}
             <div 
               ref={scrollIndicatorRef}
               className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-opacity duration-500"

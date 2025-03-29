@@ -100,6 +100,9 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden; /* Prevent horizontal scroll */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
   
   .dark .glass-card {
@@ -286,6 +289,10 @@
   background-position: 0 0, 15px 15px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .hero-pattern::before {
@@ -316,6 +323,11 @@
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .background-grid {
