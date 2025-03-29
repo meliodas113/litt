@@ -1,13 +1,34 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Scale, MessageSquare } from "lucide-react";
+import { Scale, MessageSquare, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const LegalNavbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav className="bg-black/95 backdrop-blur-md border-b border-white/5 shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+    <nav 
+      className={`bg-black/95 backdrop-blur-md border-b border-white/5 shadow-sm sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'py-3' : 'py-4'
+      }`}
+    >
+      <div className="container mx-auto flex justify-between items-center px-6 relative">
+        {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="relative p-1.5 rounded-full bg-purple-500/20 group-hover:bg-purple-500/30 transition-all duration-300">
             <Scale className="h-6 w-6 text-purple-400 group-hover:scale-110 transition-all duration-300" />
@@ -18,6 +39,7 @@ const LegalNavbar = () => {
           </span>
         </Link>
         
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           <Link to="/" className="text-white/90 hover:text-white font-medium transition-colors duration-200">
             Home
@@ -33,6 +55,7 @@ const LegalNavbar = () => {
           </Link>
         </div>
         
+        {/* Action Buttons */}
         <div className="flex items-center gap-4">
           <Link to="/chat">
             <Button 
@@ -56,8 +79,59 @@ const LegalNavbar = () => {
               Contact us
             </Button>
           </Link>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            onClick={toggleMenu} 
+            className="md:hidden text-white hover:text-purple-300 transition-colors duration-300"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/5 shadow-sm">
+          <div className="container mx-auto px-6 py-4 space-y-4">
+            <Link 
+              to="/" 
+              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10"
+              onClick={toggleMenu}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/about" 
+              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10"
+              onClick={toggleMenu}
+            >
+              About Us
+            </Link>
+            <Link 
+              to="/features" 
+              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10"
+              onClick={toggleMenu}
+            >
+              Features
+            </Link>
+            <Link 
+              to="/blog" 
+              className="block text-white/90 hover:text-white font-medium py-2 border-b border-white/10"
+              onClick={toggleMenu}
+            >
+              Blog
+            </Link>
+            <Link 
+              to="/contact" 
+              className="block bg-purple-500/20 text-white py-2 rounded-md text-center hover:bg-purple-500/30 transition-all duration-300"
+              onClick={toggleMenu}
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
