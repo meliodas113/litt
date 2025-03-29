@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ const Index = () => {
   
   // For heading typing animation
   const [displayedText, setDisplayedText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
   const fullText = "LEGAL ADVICE WITHOUT BORDERS";
   
   // For ambient background particles
@@ -60,23 +62,31 @@ const Index = () => {
     
     setOrbs(newOrbs);
     
-    // Improved typing animation with increased delay
+    // Improved smooth typing animation
     let currentIndex = 0;
+    let typingTimeout: NodeJS.Timeout;
+    
     const typeNextCharacter = () => {
       if (currentIndex <= fullText.length) {
         setDisplayedText(fullText.substring(0, currentIndex));
         currentIndex++;
         
-        // Increase delay range to 100-200ms for slower typing
-        const randomDelay = Math.floor(Math.random() * 100) + 100;
-        setTimeout(typeNextCharacter, randomDelay);
+        // Consistent timing for smoother animation
+        const typingDelay = 120; // consistent delay for smoother appearance
+        typingTimeout = setTimeout(typeNextCharacter, typingDelay);
+      } else {
+        // Animation complete
+        setIsTypingComplete(true);
       }
     };
     
-    // Start typing with a slightly longer initial delay
-    setTimeout(typeNextCharacter, 700);
+    // Start typing with a consistent initial delay
+    setTimeout(typeNextCharacter, 800);
     
-    // No need for cleanup as the component won't unmount during typing
+    // Clean up timeouts if component unmounts during typing
+    return () => {
+      clearTimeout(typingTimeout);
+    };
   }, []);
 
   return (
@@ -127,19 +137,23 @@ const Index = () => {
             {/* Left Content */}
             <div className="md:w-1/2 pt-20 md:pt-0">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
-                <span className="typing-animation">{displayedText}</span>
-                <span className="text-accent">{displayedText.includes("BORDERS") ? "" : "|"}</span>
+                <span className="typing-text">{displayedText}</span>
+                <span className="cursor-blink">{fullText.length === displayedText.length ? "" : "|"}</span>
               </h1>
-              <p className="text-md md:text-lg mb-10 text-gray-300 max-w-xl">
-                Your AI legal assistant for navigating Indian law with confidence and clarity.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/chat">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium px-8 py-6 flex items-center gap-2 hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
-                    <MessageSquare className="h-5 w-5" />
-                    Start Consultation
-                  </Button>
-                </Link>
+              
+              {/* Subheading - only appears after typing is complete */}
+              <div className={`transition-opacity duration-500 ${isTypingComplete ? 'opacity-100' : 'opacity-0'}`}>
+                <p className="text-sm md:text-md mb-10 text-gray-300 max-w-xl">
+                  Your AI legal assistant for navigating Indian law with confidence and clarity.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link to="/chat">
+                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium px-8 py-6 flex items-center gap-2 hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
+                      <MessageSquare className="h-5 w-5" />
+                      Start Consultation
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
             
