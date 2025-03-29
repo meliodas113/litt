@@ -1,9 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LegalNavbar from "@/components/LegalNavbar";
 import LegalFooter from "@/components/LegalFooter";
-import { MessageSquare, ArrowRight } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import MouseTrailEffect from "@/components/MouseTrailEffect";
 import BookRotationEffect from "@/components/BookRotationEffect";
@@ -122,11 +123,11 @@ const Index = () => {
           <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center z-10 relative">
             {/* Left Content */}
             <div className="md:w-1/2 pt-20 md:pt-0">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight cursor-responsive bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
                 <span className="typing-cursor">{displayedText}</span>
                 <span className="text-accent"> {displayedText.includes("BORDERS") ? "" : "|"}</span>
               </h1>
-              <p className="text-lg md:text-xl mb-10 text-gray-300 max-w-xl cursor-responsive">
+              <p className="text-md md:text-lg mb-10 text-gray-300 max-w-xl">
                 Your AI legal assistant for navigating Indian law with confidence and clarity.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -134,12 +135,6 @@ const Index = () => {
                   <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium px-8 py-6 flex items-center gap-2 hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
                     <MessageSquare className="h-5 w-5" />
                     Start Consultation
-                  </Button>
-                </Link>
-                <Link to="/chat">
-                  <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 rounded-full font-medium px-8 py-6 flex items-center hover:translate-y-[-2px] transition-all duration-300 interactive-glow">
-                    Learn More
-                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
               </div>
