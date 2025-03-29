@@ -10,9 +10,27 @@ interface TrailDot {
   color: string;
 }
 
+// Create a global mouse position context that can be used by other components
+export const useMousePosition = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+  
+  return mousePosition;
+};
+
 const MouseTrailEffect = () => {
   const [dots, setDots] = useState<TrailDot[]>([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mousePosition = useMousePosition();
   
   // Colors that match the site theme
   const colors = ['rgba(191, 148, 255, 0.7)', 'rgba(153, 102, 255, 0.5)', 'rgba(120, 80, 200, 0.3)'];
@@ -20,8 +38,6 @@ const MouseTrailEffect = () => {
   useEffect(() => {
     // Function to handle mouse movement
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      
       // Create a new dot at the current mouse position
       const newDot = {
         id: Date.now(),

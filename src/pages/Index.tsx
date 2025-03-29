@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LegalNavbar from "@/components/LegalNavbar";
 import LegalFooter from "@/components/LegalFooter";
-import { MessageSquare, ArrowRight, BookOpen, Scale } from "lucide-react";
+import { MessageSquare, ArrowRight } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import MouseTrailEffect from "@/components/MouseTrailEffect";
+import BookRotationEffect from "@/components/BookRotationEffect";
 
 const Index = () => {
   useScrollAnimation();
@@ -126,19 +127,10 @@ const Index = () => {
               </div>
             </div>
             
-            {/* Right Animation - Legal Scales */}
+            {/* Right Animation - Book with mouse rotation effect */}
             <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center items-center">
-              <div className="relative tilt-on-mouse">
-                <div className="book-container">
-                  <div className="book">
-                    <div className="glow-effect"></div>
-                    <div className="book-cover flex items-center justify-center bg-gradient-to-br from-primary/30 to-accent/30 backdrop-blur-sm border border-white/10 shadow-xl cursor-responsive" style={{ width: "240px", height: "320px" }}>
-                      <Scale className="text-white h-20 w-20 opacity-90" />
-                    </div>
-                    <div className="book-page absolute top-2 left-2 bg-white/5 backdrop-blur-sm border border-white/5" style={{ width: "230px", height: "310px", transform: "translateZ(-5px)" }}></div>
-                    <div className="book-page absolute top-4 left-4 bg-white/5 backdrop-blur-sm border border-white/5" style={{ width: "220px", height: "300px", transform: "translateZ(-10px)" }}></div>
-                  </div>
-                </div>
+              <div className="relative">
+                <BookRotationEffect />
               </div>
             </div>
           </div>
