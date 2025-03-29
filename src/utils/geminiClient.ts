@@ -1,9 +1,8 @@
 
 import { ApiChatMessage } from "./types/chatTypes";
 
-// API key would ideally be stored in environment variables on the server side
-// For demo purposes using a public client-side implementation
-const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"; // Replace with your actual API key
+// Get API key from localStorage if available
+const getApiKey = () => localStorage.getItem("gemini_api_key") || "YOUR_GEMINI_API_KEY";
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
 
 interface GeminiRequestContent {
@@ -51,6 +50,12 @@ export async function generateLegalResponse(
   conversationHistory: ApiChatMessage[] = []
 ): Promise<string> {
   try {
+    const apiKey = getApiKey();
+    
+    if (!apiKey || apiKey === "YOUR_GEMINI_API_KEY") {
+      return "Please set your Gemini API key in the settings to continue.";
+    }
+    
     // Add a system message to guide Gemini to provide legal advice
     const systemMessage: GeminiRequestContent = {
       role: "user",
@@ -79,7 +84,7 @@ export async function generateLegalResponse(
     console.log("Sending to Gemini API:", JSON.stringify(requestBody, null, 2));
     
     // Make API request to Gemini
-    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

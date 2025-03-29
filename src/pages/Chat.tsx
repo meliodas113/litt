@@ -3,6 +3,7 @@ import React from "react";
 import LegalNavbar from "@/components/LegalNavbar";
 import LegalFooter from "@/components/LegalFooter";
 import ChatInterface from "@/components/ChatInterface";
+import ApiKeyInput from "@/components/ApiKeyInput";
 
 const Chat = () => {
   return (
@@ -10,11 +11,14 @@ const Chat = () => {
       <LegalNavbar />
       <main className="flex-1 container mx-auto px-4 py-6">
         <div className="bg-card shadow-lg rounded-lg overflow-hidden border">
-          <div className="p-4 bg-primary text-primary-foreground">
-            <h1 className="text-xl font-bold">AI Legal Consultation</h1>
-            <p className="text-sm opacity-90">
-              Powered by Google Gemini AI - Ask questions about Indian law and get real-time legal analysis
-            </p>
+          <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center">
+            <div>
+              <h1 className="text-xl font-bold">AI Legal Consultation</h1>
+              <p className="text-sm opacity-90">
+                Powered by Google Gemini AI - Ask questions about Indian law and get real-time legal analysis
+              </p>
+            </div>
+            <ApiKeyInput />
           </div>
           <ChatInterface />
         </div>
