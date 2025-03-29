@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Scale, Gavel, BookOpen, Scroll } from 'lucide-react';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { Card } from "@/components/ui/card";
 
 interface FloatingElement {
   id: number;
@@ -84,13 +86,22 @@ const FloatingElements = () => {
     };
     
     if (element.type === 'text') {
+      const term = legalTerms[Math.floor(Math.random() * legalTerms.length)];
       return (
-        <div 
-          className={`text-xs font-medium ${element.color} tracking-wider`}
-          style={{ textShadow: '0 0 5px rgba(255,255,255,0.2)' }}
-        >
-          {legalTerms[Math.floor(Math.random() * legalTerms.length)]}
-        </div>
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <div 
+              className={`px-3 py-2 rounded-lg backdrop-blur-md bg-primary/10 border border-primary/20 shadow-sm hover:bg-primary/20 transition-all duration-300 cursor-pointer ${element.color}`}
+            >
+              <span className="text-xs font-medium tracking-wider text-white/90">
+                {term}
+              </span>
+            </div>
+          </HoverCardTrigger>
+          <HoverCardContent className="glass-morphism backdrop-blur-xl bg-black/50 border border-primary/20 text-white w-48">
+            <p className="text-xs">{term}: A fundamental concept in legal practice and theory.</p>
+          </HoverCardContent>
+        </HoverCard>
       );
     }
     
@@ -108,7 +119,7 @@ const FloatingElements = () => {
       {elements.map(element => (
         <div
           key={element.id}
-          className="absolute floating-element transition-all duration-1000"
+          className={`absolute floating-element transition-all duration-1000 ${element.type === 'text' ? 'pointer-events-auto' : 'pointer-events-none'}`}
           style={{
             top: `${element.top}%`,
             left: `${element.left}%`,
@@ -116,7 +127,7 @@ const FloatingElements = () => {
             animation: `float ${element.duration}s ease-in-out infinite ${element.delay}s, 
                         rotate ${element.duration * 1.5}s linear infinite ${element.delay}s`,
             transform: `rotate(${element.rotation}deg)`,
-            zIndex: 5,
+            zIndex: element.type === 'text' ? 10 : 5,
             filter: element.blur ? `blur(${element.blur}px)` : 'none',
           }}
         >
