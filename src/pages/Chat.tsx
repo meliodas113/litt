@@ -17,7 +17,7 @@ const Chat = () => {
   }, [setTheme]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-x-hidden"> {/* Added overflow-x-hidden to prevent horizontal scroll */}
       <LegalNavbar />
       <main className="flex-1 container mx-auto px-2 sm:px-4 pt-20 pb-2 sm:pt-24 sm:pb-6">
         <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border animate-fade-in">
