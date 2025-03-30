@@ -90,7 +90,7 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-14rem)] bg-background">
+    <div className="flex flex-col h-[calc(100vh-14rem)] sm:h-[calc(100vh-16rem)]">
       <div className="flex-1 overflow-y-auto p-4">
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
