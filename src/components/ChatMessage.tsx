@@ -56,7 +56,14 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
               {new Date(message.timestamp).toLocaleTimeString()}
             </span>
           </div>
-          <p className="whitespace-pre-wrap">{message.content}</p>
+          {isAI ? (
+            <div 
+              className="prose prose-sm dark:prose-invert max-w-none prose-headings:mb-2 prose-p:my-1 whitespace-pre-wrap" 
+              dangerouslySetInnerHTML={{ __html: message.content }}
+            />
+          ) : (
+            <p className="whitespace-pre-wrap">{message.content}</p>
+          )}
         </div>
       </div>
     </div>
