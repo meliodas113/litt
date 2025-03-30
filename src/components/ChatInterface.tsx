@@ -7,6 +7,7 @@ import ChatMessage, { MessageType } from "./ChatMessage";
 import { generateLegalResponse } from "@/utils/geminiClient";
 import { useToast } from "@/components/ui/use-toast";
 import { ApiChatMessage } from "@/utils/types/chatTypes";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const INITIAL_MESSAGES: MessageType[] = [
   {
@@ -96,14 +97,13 @@ const ChatInterface = () => {
           <ChatMessage key={message.id} message={message} />
         ))}
         {isLoading && (
-          <div className="flex justify-start mb-4 animate-pulse">
-            <div className="bg-secondary text-secondary-foreground rounded-lg p-4 max-w-[80%] md:max-w-[70%] flex items-center shadow-md">
+          <div className="flex justify-start mb-4">
+            <div className="bg-secondary/80 backdrop-blur-sm rounded-lg p-4 max-w-[80%] md:max-w-[70%] flex items-center shadow-md border border-border/20">
               <div className="flex-shrink-0 mr-3">
-                <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center animate-spin">
-                  <Scale className="h-5 w-5 text-accent-foreground" />
+                <div className="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center animate-pulse">
+                  <Scale className="h-5 w-5 text-accent animate-spin" />
                 </div>
               </div>
-              <span className="animate-pulse">Litt is analyzing legal documents and precedents...</span>
             </div>
           </div>
         )}
